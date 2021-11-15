@@ -11,7 +11,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var topBackground: UILabel!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -20,18 +19,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var reverseButtonOutlet: UIButton!
     
-    
+    let bottomLine = CALayer()
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        inputTF.addTarget(self, action: #selector(editingBegan(_:)), for: .editingDidBegin)
-//        inputTF.addTarget(self, action: #selector(editingEnded(_:)), for: .editingDidEnd)
         
+        //bottom line text field options
+        bottomLine.frame = CGRect(x: 0.0, y: inputTF.frame.height - 1, width: inputTF.frame.width, height: 1.0)
+        inputTF.bounds = inputTF.bounds.insetBy(dx: 0, dy: -11.25)
+        bottomLine.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        inputTF.layer.addSublayer(bottomLine)
         
-        // button
+        // button options
         reverseButtonOutlet.frame = CGRect(x: 0, y: 0, width: 343, height: 56)
         reverseButtonOutlet.alpha = 0.6
         reverseButtonOutlet.layer.backgroundColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
@@ -46,52 +46,6 @@ class ViewController: UIViewController {
         reverseButtonOutlet.leadingAnchor.constraint(equalTo: parentButton.leadingAnchor, constant: 16).isActive = true
         reverseButtonOutlet.trailingAnchor.constraint(equalTo: parentButton.trailingAnchor, constant: -16).isActive = true
         reverseButtonOutlet.bottomAnchor.constraint(equalTo: parentButton.bottomAnchor, constant: -66).isActive = true
-        
-        grayLine()
-        
-    }
-    
-    func grayLine () {
-        let view = UILabel()
-        view.frame = CGRect(x: 0, y: 0, width: 358, height: 0)
-        
-        view.alpha = 0.2
-        let stroke = UIView()
-        stroke.bounds = view.bounds.insetBy(dx: -0.25, dy: -0.25)
-        stroke.center = view.center
-        view.addSubview(stroke)
-        view.bounds = view.bounds.insetBy(dx: -0.25, dy: -0.25)
-        stroke.layer.borderWidth = 0.5
-        stroke.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor
-        
-        let parent = self.view!
-        parent.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 0).isActive = true
-        view.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: 16).isActive = true
-        view.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -16).isActive = true
-        view.centerYAnchor.constraint(equalTo: parent.centerYAnchor, constant: 0).isActive = true
-    }
-    
-    func  blueLine () {
-        let view = UILabel()
-        view.frame = CGRect(x: 0, y: 0, width: 358, height: 0)
-        
-        let stroke = UIView()
-        stroke.bounds = view.bounds.insetBy(dx: -0.5, dy: -0.5)
-        stroke.center = view.center
-        view.addSubview(stroke)
-        view.bounds = view.bounds.insetBy(dx: -0.5, dy: -0.5)
-        stroke.layer.borderWidth = 1
-        stroke.layer.borderColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
-        
-        let parent = self.view!
-        parent.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 0).isActive = true
-        view.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: 16).isActive = true
-        view.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -16).isActive = true
-        view.centerYAnchor.constraint(equalTo: parent.centerYAnchor, constant: 0).isActive = true
     }
     
     func reversWords()  {
@@ -103,7 +57,6 @@ class ViewController: UIViewController {
             let newString = words.joined(separator: " ")
             resultLabel.text = "\(newString)"
             inputTF.endEditing(false)
-            
         }else{
             resultLabel.text = "Please type text"
         }
@@ -118,14 +71,13 @@ class ViewController: UIViewController {
     
     @IBAction func editingBegan(_ sender: UITextField) {
         reverseButtonOutlet.alpha = 1
-        blueLine()
+        bottomLine.backgroundColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
     }
     
     @IBAction func editingEnded(_ sender: UITextField) {
-        
+        bottomLine.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
     }
-    
-    
+
     @IBAction func reverseButtonTap(_ sender: UIButton) {
         if reverseButtonOutlet.currentTitle == "Reverse" {
             reversWords()
@@ -137,7 +89,6 @@ class ViewController: UIViewController {
         }else{
             reverseButtonOutlet.setTitle("Clear", for: .normal)
         }
-        grayLine()
     }
 }
 
