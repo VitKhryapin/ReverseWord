@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     let bottomLine = CALayer()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         inputTF.delegate = self
@@ -59,24 +60,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func reversWords()  {
-        if inputTF.text != "" {
-            let string = String(inputTF.text!)
-            var words = string.components(separatedBy: " ")
-            stride(from: 0, to: words.count, by: 1)
-                .forEach {words[$0] = String(words[$0].reversed())}
-            let newString = words.joined(separator: " ")
-            resultLabel.text = "\(newString)"
-            inputTF.endEditing(false)
-        }else{
-            resultLabel.text = "Please type text"
-        }
+        let string = String(inputTF.text!)
+        let words = string.components(separatedBy: " ")
+        let newString = words.map{str in String(str.reversed())}
+        resultLabel.text = "\(newString.joined(separator: " "))"
+        inputTF.endEditing(false)
     }
     
-    func clearFields () {
-        if reverseButtonOutlet.currentTitle == "Clear" {
+    func clearFields() {
             inputTF.text = ""
             resultLabel.text = ""
-        }
     }
     
     @IBAction func editingBegan(_ sender: UITextField) {
@@ -87,13 +80,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func editingEnded(_ sender: UITextField) {
         bottomLine.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
     }
-
+    
     @IBAction func reverseButtonTap(_ sender: UIButton) {
-        if reverseButtonOutlet.currentTitle == "Reverse" {
-            reversWords()
-        }else{
+        if  inputTF.text == ""  {
+            resultLabel.text = "Please type text"
+        }else if inputTF.text != "" && resultLabel.text != "" && resultLabel.text != "Please type text" {
             clearFields()
+        }else{
+            reversWords()
         }
+        
         if inputTF.text == "" {
             reverseButtonOutlet.setTitle("Reverse", for: .normal)
         }else{
