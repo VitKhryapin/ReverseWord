@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var topBackground: UILabel!
     @IBOutlet weak var topLabel: UILabel!
@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        inputTF.delegate = self
         // Do any additional setup after loading the view.
         
         //bottom line text field options
@@ -46,6 +47,15 @@ class ViewController: UIViewController {
         reverseButtonOutlet.leadingAnchor.constraint(equalTo: parentButton.leadingAnchor, constant: 16).isActive = true
         reverseButtonOutlet.trailingAnchor.constraint(equalTo: parentButton.trailingAnchor, constant: -16).isActive = true
         reverseButtonOutlet.bottomAnchor.constraint(equalTo: parentButton.bottomAnchor, constant: -66).isActive = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     func reversWords()  {
