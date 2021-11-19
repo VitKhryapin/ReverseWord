@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ReverseWord" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="ReverseWord" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,8 +82,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZlD-kG-dpj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1dj-75-Sr7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vpr-3i-SeW" secondAttribute="bottom" constant="43" id="41w-HV-dqZ"/>
                             <constraint firstItem="43F-SG-pHM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="EL3-Hs-YFy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vpr-3i-SeW" secondAttribute="bottom" constant="43" id="EwH-np-ZhQ"/>
                             <constraint firstItem="ZlD-kG-dpj" firstAttribute="bottom" secondItem="fWG-fT-8hC" secondAttribute="bottom" id="Ezh-mw-90e"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O6u-JA-p3T" secondAttribute="trailing" constant="16" id="HVz-bo-g6W"/>
                             <constraint firstItem="Xol-xW-zTh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="JPI-6x-O0J"/>

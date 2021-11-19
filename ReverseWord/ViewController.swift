@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         reverseButtonOutlet.heightAnchor.constraint(equalToConstant: 56).isActive = true
         reverseButtonOutlet.leadingAnchor.constraint(equalTo: parentButton.leadingAnchor, constant: 16).isActive = true
         reverseButtonOutlet.trailingAnchor.constraint(equalTo: parentButton.trailingAnchor, constant: -16).isActive = true
-        reverseButtonOutlet.bottomAnchor.constraint(equalTo: parentButton.bottomAnchor, constant: -66).isActive = true
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -60,10 +60,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func reversWords()  {
-        let string = String(inputTF.text!)
-        let words = string.components(separatedBy: " ")
-        let newString = words.map{str in String(str.reversed())}
-        resultLabel.text = "\(newString.joined(separator: " "))"
+        if let string: String = inputTF.text {
+            let words = string.components(separatedBy: " ")
+            let newString = words.map{str in String(str.reversed())}
+            resultLabel.text = "\(newString.joined(separator: " "))"
+        }
         inputTF.endEditing(false)
     }
     
@@ -82,7 +83,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func reverseButtonTap(_ sender: UIButton) {
-        if  inputTF.text == ""  {
+        if  inputTF.text == "" || inputTF.text == nil   {
+            
             resultLabel.text = "Please type text"
         }else if inputTF.text != "" && resultLabel.text != "" && resultLabel.text != "Please type text" {
             clearFields()
