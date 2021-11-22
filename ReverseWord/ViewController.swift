@@ -23,8 +23,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super .viewDidLoad()
         inputTF.delegate = self
+        inputTF.accessibilityIdentifier = "inputTF"
+        resultLabel.accessibilityIdentifier = "resultLabel"
         // Do any additional setup after loading the view.
         
         //bottom line text field options
@@ -32,6 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         inputTF.bounds = inputTF.bounds.insetBy(dx: 0, dy: -11.25)
         bottomLine.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
         inputTF.layer.addSublayer(bottomLine)
+        bottomLine.accessibilityLabel = "bottomLine"
         
         // button options
         reverseButtonOutlet.frame = CGRect(x: 0, y: 0, width: 343, height: 56)
