@@ -18,7 +18,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var inputTF: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var reverseButtonOutlet: UIButton!
-    
+    @IBOutlet weak var textIgnoreTF: UITextField!
+    @IBOutlet weak var segmentControllerOutlet: UISegmentedControl!
     let bottomLine = CALayer()
     
     
@@ -31,7 +32,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         //bottom line text field options
         bottomLine.frame = CGRect(x: 0.0, y: inputTF.frame.height - 1, width: inputTF.frame.width, height: 1.0)
-        inputTF.bounds = inputTF.bounds.insetBy(dx: 0, dy: -11.25)
+        inputTF.bounds = inputTF.bounds.insetBy(dx: 0, dy: -5.25)
         bottomLine.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
         inputTF.layer.addSublayer(bottomLine)
         bottomLine.accessibilityLabel = "bottomLine"
@@ -65,15 +66,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func reversWords()  {
         if let string: String = inputTF.text {
             let words = string.components(separatedBy: " ")
-            let newString = words.map{str in String(str.reversed())}
-            resultLabel.text = "\(newString.joined(separator: " "))"
+            let character = string.compactMap{$0}
+            let reverseString = words.map{String($0.reversed())}
+            let reverseCharacter = reverseString.joined(separator: " ").filter{$0.isLetter}.compactMap{$0}
+            var resultString: String = " "
+            var numberOfExceptionalValues = 0
+            for indexCharacter in character.indices {
+                if !character[indexCharacter].isLetter {
+                    resultString = resultString + String(character[indexCharacter])
+                    numberOfExceptionalValues += 1
+                }else{
+                    resultString = resultString + String(reverseCharacter[indexCharacter-numberOfExceptionalValues])
+                }
+            }
+            resultLabel.text = "\(resultString)"
         }
         inputTF.endEditing(false)
     }
     
     func clearFields() {
-            inputTF.text = ""
-            resultLabel.text = ""
+        inputTF.text = ""
+        resultLabel.text = ""
     }
     
     @IBAction func editingBegan(_ sender: UITextField) {
@@ -85,6 +98,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         bottomLine.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
     }
     
+    @IBAction func segmentControllerChanged(_ sender:  UISegmentedControl) {
+        let textIgnore = ""
+        switch sender.selectedSegmentIndex {
+        case 0:
+            textIgnoreTF.text = "All characters except alhabetic symbols"
+            textIgnoreTF.borderStyle = .none
+            textIgnoreTF.textAlignment = .center
+            
+        case 1:
+            textIgnoreTF.text = textIgnore
+            textIgnoreTF.borderStyle = .roundedRect
+            textIgnoreTF.textAlignment = .left
+            
+        default:
+            break
+        }
+    }
+    
     @IBAction func reverseButtonTap(_ sender: UIButton) {
         if  inputTF.text == "" || inputTF.text == nil   {
             
@@ -93,6 +124,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             clearFields()
         }else{
             reversWords()
+            
         }
         
         if inputTF.text == "" {

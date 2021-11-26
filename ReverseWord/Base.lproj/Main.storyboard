@@ -48,7 +48,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Text to reverse" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="43F-SG-pHM">
-                                <rect key="frame" x="16" y="386" width="358" height="22"/>
+                                <rect key="frame" x="16" y="345" width="358" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -57,7 +57,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xol-xW-zTh">
-                                <rect key="frame" x="16" y="423" width="358" height="53"/>
+                                <rect key="frame" x="16" y="475" width="358" height="53"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="53" id="qar-vG-v1t"/>
@@ -77,22 +77,51 @@
                                     <action selector="reverseButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e4f-3I-QW6"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LQy-Th-qGy">
+                                <rect key="frame" x="16" y="375" width="358" height="32"/>
+                                <segments>
+                                    <segment title="Default"/>
+                                    <segment title="Custom"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentControllerChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="imL-Ub-mGC"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="All characters except alhabetic symbols" placeholder="Text to ignore" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bwa-FH-zoZ">
+                                <rect key="frame" x="16" y="424" width="358" height="18.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUY-Kj-ImQ">
+                                <rect key="frame" x="169" y="458" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZlD-kG-dpj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1dj-75-Sr7"/>
+                            <constraint firstItem="Bwa-FH-zoZ" firstAttribute="trailing" secondItem="LQy-Th-qGy" secondAttribute="trailing" id="5Il-Qb-j8Q"/>
+                            <constraint firstItem="Xol-xW-zTh" firstAttribute="top" secondItem="QUY-Kj-ImQ" secondAttribute="bottom" constant="-4" id="5hV-er-gyZ"/>
+                            <constraint firstItem="LQy-Th-qGy" firstAttribute="top" secondItem="43F-SG-pHM" secondAttribute="bottom" constant="8" id="8YH-KQ-Sq2"/>
                             <constraint firstItem="43F-SG-pHM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="EL3-Hs-YFy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vpr-3i-SeW" secondAttribute="bottom" constant="43" id="EwH-np-ZhQ"/>
                             <constraint firstItem="ZlD-kG-dpj" firstAttribute="bottom" secondItem="fWG-fT-8hC" secondAttribute="bottom" id="Ezh-mw-90e"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O6u-JA-p3T" secondAttribute="trailing" constant="16" id="HVz-bo-g6W"/>
+                            <constraint firstItem="LQy-Th-qGy" firstAttribute="trailing" secondItem="Vpr-3i-SeW" secondAttribute="trailing" id="Hy6-yH-SSQ"/>
                             <constraint firstItem="Xol-xW-zTh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="JPI-6x-O0J"/>
+                            <constraint firstItem="Bwa-FH-zoZ" firstAttribute="top" secondItem="LQy-Th-qGy" secondAttribute="bottom" constant="18" id="MuB-iY-pry"/>
                             <constraint firstItem="vTR-Zc-AZ3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="152" id="NBb-nm-RX9"/>
                             <constraint firstItem="vTR-Zc-AZ3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Oy7-AG-vYN"/>
-                            <constraint firstItem="Xol-xW-zTh" firstAttribute="top" secondItem="43F-SG-pHM" secondAttribute="bottom" constant="15" id="QJL-Wn-icv"/>
+                            <constraint firstItem="LQy-Th-qGy" firstAttribute="leading" secondItem="Vpr-3i-SeW" secondAttribute="leading" id="Q8n-Hw-KEg"/>
+                            <constraint firstItem="QUY-Kj-ImQ" firstAttribute="top" secondItem="Bwa-FH-zoZ" secondAttribute="bottom" constant="15.333333333333314" id="SUS-gw-t7V"/>
                             <constraint firstItem="Vpr-3i-SeW" firstAttribute="trailing" secondItem="Xol-xW-zTh" secondAttribute="trailing" id="SaR-M1-aGg"/>
+                            <constraint firstItem="QUY-Kj-ImQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="169" id="TVF-HB-Xaa"/>
                             <constraint firstItem="fWG-fT-8hC" firstAttribute="centerX" secondItem="ZlD-kG-dpj" secondAttribute="centerX" id="UlF-uW-SJi"/>
                             <constraint firstItem="43F-SG-pHM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ZOr-yP-lKs"/>
+                            <constraint firstItem="Bwa-FH-zoZ" firstAttribute="leading" secondItem="LQy-Th-qGy" secondAttribute="leading" id="ZXt-oD-KsS"/>
                             <constraint firstItem="Vpr-3i-SeW" firstAttribute="leading" secondItem="Xol-xW-zTh" secondAttribute="leading" id="ZZl-Fz-NMX"/>
                             <constraint firstItem="O6u-JA-p3T" firstAttribute="top" secondItem="vTR-Zc-AZ3" secondAttribute="bottom" constant="30.333333333333343" id="brD-Nu-Ezz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="fWG-fT-8hC" secondAttribute="top" constant="44" id="cS7-iP-ozH"/>
@@ -100,8 +129,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vTR-Zc-AZ3" secondAttribute="trailing" constant="16" id="mu4-ne-cGC"/>
                             <constraint firstItem="fWG-fT-8hC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oNt-Mc-Dnt"/>
                             <constraint firstItem="O6u-JA-p3T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uGS-yx-L1E"/>
-                            <constraint firstItem="43F-SG-pHM" firstAttribute="top" secondItem="O6u-JA-p3T" secondAttribute="bottom" constant="78.333333333333314" id="wV5-yO-2fE"/>
+                            <constraint firstItem="43F-SG-pHM" firstAttribute="top" secondItem="O6u-JA-p3T" secondAttribute="bottom" constant="37.333333333333314" id="wV5-yO-2fE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="43F-SG-pHM" secondAttribute="trailing" constant="16" id="xac-Yc-hPU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QUY-Kj-ImQ" secondAttribute="trailing" constant="169" id="zd9-ii-WGm"/>
                         </constraints>
                     </view>
                     <connections>
@@ -110,6 +140,8 @@
                         <outlet property="nameLabel" destination="vTR-Zc-AZ3" id="oks-ks-ckZ"/>
                         <outlet property="resultLabel" destination="Xol-xW-zTh" id="Lfq-7J-DmP"/>
                         <outlet property="reverseButtonOutlet" destination="Vpr-3i-SeW" id="TCo-Ke-DU0"/>
+                        <outlet property="segmentControllerOutlet" destination="LQy-Th-qGy" id="hsx-1p-y5S"/>
+                        <outlet property="textIgnoreTF" destination="Bwa-FH-zoZ" id="gp6-YU-6Ap"/>
                         <outlet property="topBackground" destination="fWG-fT-8hC" id="gfH-oW-jmn"/>
                         <outlet property="topLabel" destination="ZlD-kG-dpj" id="t6r-Co-vao"/>
                     </connections>
