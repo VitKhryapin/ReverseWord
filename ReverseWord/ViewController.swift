@@ -68,15 +68,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let words = string.components(separatedBy: " ")
             let character = string.compactMap{$0}
             let reverseString = words.map{String($0.reversed())}
-            let reverseCharacter = reverseString.joined(separator: " ").filter{$0.isLetter}.compactMap{$0}
-            var resultString: String = " "
             var numberOfExceptionalValues = 0
-            for indexCharacter in character.indices {
-                if !character[indexCharacter].isLetter {
-                    resultString = resultString + String(character[indexCharacter])
-                    numberOfExceptionalValues += 1
-                }else{
-                    resultString = resultString + String(reverseCharacter[indexCharacter-numberOfExceptionalValues])
+            var resultString: String = ""
+            if segmentControllerOutlet.selectedSegmentIndex == 0 {
+                let reverseCharacter = reverseString
+                    .joined(separator: " ")
+                    .filter{$0.isLetter}
+                    .compactMap{$0}
+                for indexCharacter in character.indices {
+                    if !character[indexCharacter].isLetter {
+                        resultString = resultString + String(character[indexCharacter])
+                        numberOfExceptionalValues += 1
+                    }else{
+                        resultString = resultString + String(reverseCharacter[indexCharacter-numberOfExceptionalValues])
+                    }
+                }
+            }else{
+                let exceptional: String = textIgnoreTF.text!
+                let characterExceptional = Array(exceptional)
+                let reverseCharacter = reverseString
+                    .joined(separator: " ")
+                    .filter{!characterExceptional.contains($0)}
+                    .compactMap{$0}
+                for indexCharacter in character.indices {
+                    if  characterExceptional.contains(character[indexCharacter]) {
+                        resultString += String(character[indexCharacter])
+                        numberOfExceptionalValues += 1
+                    }else{
+                        resultString += String(reverseCharacter[indexCharacter - numberOfExceptionalValues])
+                    }
                 }
             }
             resultLabel.text = "\(resultString)"
@@ -115,6 +135,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             break
         }
     }
+    
+    
     
     @IBAction func reverseButtonTap(_ sender: UIButton) {
         if  inputTF.text == "" || inputTF.text == nil   {
