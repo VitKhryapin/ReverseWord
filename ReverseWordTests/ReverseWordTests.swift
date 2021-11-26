@@ -34,7 +34,7 @@ class ReverseWordTests: XCTestCase {
     func testExample() throws {
         
     }
-    func testNotEmptyTextField() throws {
+    func testNotEmptyTextFieldAndDefaultSegmentController() throws {
         
         //Given
         revers.inputTF.text = "Test string"
@@ -48,14 +48,14 @@ class ReverseWordTests: XCTestCase {
         //Then
         XCTAssertEqual(resultTest, revers.resultLabel.text)
     }
-    func testEmptyTextField() throws {
+    func testTextFieldWithAlhabeticSymbolsAndDefaultSegmentController() throws {
         
         //Given
-        revers.inputTF.text = nil
-        let resultTest = "Please type text"
+        revers.inputTF.text = "Foxminded cool 24/7"
+        let resultTest = "dednimxoF looc 24/7"
     
         //When
-        if revers.inputTF.text == nil || revers.inputTF.text == "" {
+        if revers.inputTF.text != nil {
             revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
         }
         
@@ -63,48 +63,176 @@ class ReverseWordTests: XCTestCase {
         XCTAssertEqual(resultTest, revers.resultLabel.text)
     }
     
-    func testEmptyTextFieldAndNotEmptyResultLabel() throws {
+    func testTextFieldNotAlhabeticSymbolsAndDefaultSegmentController() throws {
         
         //Given
-        revers.inputTF.text = nil
-        revers.resultLabel.text = "some text"
-        let resultTest = "Please type text"
+        revers.inputTF.text = "abcd efgh"
+        let resultTest = "dcba hgfe"
     
         //When
-        revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
-      
+        if revers.inputTF.text != nil {
+            revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+        }
+        
         //Then
         XCTAssertEqual(resultTest, revers.resultLabel.text)
     }
     
-    func testNotEmptyTextFieldAndNotEmptyResultLabel() throws {
+    func testTextFieldWithAlhabeticSymbolsAndPunctuationMarksAndDefaultSegmentController() throws {
+        
+        //Given
+        revers.inputTF.text = "a1bcd efg!h"
+        let resultTest = "d1cba hgf!e"
+    
+        //When
+        if revers.inputTF.text != nil {
+            revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+        }
+        
+        //Then
+        XCTAssertEqual(resultTest, revers.resultLabel.text)
+    }
+    
+    func testTextFieldOnlyNumbersAndDefaultSegmentController() throws {
+        
+        //Given
+        revers.inputTF.text = "1234 56789"
+        let resultTest = "1234 56789"
+    
+        //When
+        if revers.inputTF.text != nil {
+            revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+        }
+        
+        //Then
+        XCTAssertEqual(resultTest, revers.resultLabel.text)
+    }
+    
+    func testNotEmptyTextFieldAndCustomSegmentController() throws {
         
         //Given
         revers.inputTF.text = "Test string"
-        revers.resultLabel.text = "Please type text"
         let resultTest = "tseT gnirts"
+        revers.segmentControllerOutlet.actionForSegment(at: 1)
     
         //When
-        revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
-       
-      
+        if revers.inputTF.text != nil {
+            revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+        }
+        
         //Then
         XCTAssertEqual(resultTest, revers.resultLabel.text)
     }
-    func testClear() throws {
+    
+    func testTextFieldAndCustomSegmentControllerAndNotEmptyIgnoreTF1() throws {
         
         //Given
-        revers.inputTF.text = "Test string"
-        revers.resultLabel.text = "Please type text"
-        let resultTest = ""
+        revers.inputTF.text = "Foxminded cool 24/7"
+        let resultTest = "dexdnimoF oocl 7/42"
+        revers.segmentControllerOutlet.selectedSegmentIndex = 1
+        revers.textIgnoreTF.text = "xl"
     
         //When
-        revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
-        revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
-       
-      
+        if revers.inputTF.text != nil {
+            revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+        }
+        
         //Then
         XCTAssertEqual(resultTest, revers.resultLabel.text)
     }
+    func testTextFieldAndCustomSegmentControllerAndNotEmptyIgnoreTF2() throws {
+        
+        //Given
+        revers.inputTF.text = "a1bcd efglh"
+        let resultTest = "dcb1a hgfle"
+        revers.segmentControllerOutlet.selectedSegmentIndex = 1
+        revers.textIgnoreTF.text = "xl"
+    
+        //When
+        if revers.inputTF.text != nil {
+            revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+        }
+        
+        //Then
+        XCTAssertEqual(resultTest, revers.resultLabel.text)
+    }
+    
+    func testTextFieldAndCustomSegmentControllerAndOnlyNumbersIgnoreTF() throws {
+        
+        //Given
+        revers.inputTF.text = "12345 12345"
+        let resultTest = "42315 42315"
+        revers.segmentControllerOutlet.selectedSegmentIndex = 1
+        revers.textIgnoreTF.text = "25"
+    
+        //When
+        if revers.inputTF.text != nil {
+            revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+        }
+        
+        //Then
+        XCTAssertEqual(resultTest, revers.resultLabel.text)
+    }
+    
+    //Button hidden
+//    func testEmptyTextField() throws {
+//
+//        //Given
+//        revers.inputTF.text = nil
+//        let resultTest = "Please type text"
+//
+//        //When
+//        if revers.inputTF.text == nil || revers.inputTF.text == "" {
+//            revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+//        }
+//
+//        //Then
+//        XCTAssertEqual(resultTest, revers.resultLabel.text)
+//    }
+    //Button hidden
+//    func testEmptyTextFieldAndNotEmptyResultLabel() throws {
+//
+//        //Given
+//        revers.inputTF.text = nil
+//        revers.resultLabel.text = "some text"
+//        let resultTest = "Please type text"
+//
+//        //When
+//        revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+//
+//        //Then
+//        XCTAssertEqual(resultTest, revers.resultLabel.text)
+//    }
+    //Button hidden
+//    func testNotEmptyTextFieldAndNotEmptyResultLabel() throws {
+//
+//        //Given
+//        revers.inputTF.text = "Test string"
+//        revers.resultLabel.text = "Please type text"
+//        let resultTest = "tseT gnirts"
+//
+//        //When
+//        revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+//
+//
+//        //Then
+//        XCTAssertEqual(resultTest, revers.resultLabel.text)
+//    }
+    //Button hidden
+//    func testClear() throws {
+//
+//        //Given
+//        revers.inputTF.text = "Test string"
+//        revers.resultLabel.text = "Please type text"
+//        let resultTest = ""
+//
+//        //When
+//        revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+//        revers.reverseButtonOutlet.sendActions(for:.allTouchEvents)
+//
+//
+//        //Then
+//        XCTAssertEqual(resultTest, revers.resultLabel.text)
+//    }
 
 }

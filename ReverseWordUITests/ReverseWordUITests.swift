@@ -28,21 +28,11 @@ class ReverseWordUITests: XCTestCase {
         app.launch()
         app.textFields["inputTF"].tap()
         app.textFields["inputTF"].typeText("Test string")
-        app.buttons["Return"].tap()
-        app.buttons["Reverse"].tap()
         let resultTest = app.staticTexts["resultLabel"]
         XCTAssertEqual(resultTest.label, "tseT gnirts")
         
     }
     
-    func testEmptyTextFieldAndTapButtonRevers() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-        app.buttons["Reverse"].tap()
-        let resultTest = app.staticTexts["resultLabel"]
-        XCTAssertEqual(resultTest.label, "Please type text")
-    }
     
     func testClearTextFieldAndResultLabel() throws {
         // UI tests must launch the application that they test.
@@ -51,13 +41,22 @@ class ReverseWordUITests: XCTestCase {
         app.textFields["inputTF"].tap()
         app.textFields["inputTF"].typeText("Test string")
         app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
-        app.buttons["Reverse"].tap()
-        app.buttons["Clear"].tap()
+    }
+    func testTextFieldSwithSegmentController() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        app.textFields["inputTF"].tap()
+        app.textFields["inputTF"].typeText("Foxminded cool 24/7")
         let resultTest = app.staticTexts["resultLabel"]
-        XCTAssertEqual(resultTest.label, "")
-        
-
-        
-        
+        XCTAssertEqual(resultTest.label, "dednimxoF looc 24/7")
+        app.buttons["Custom"].tap()
+        app.textFields["textIgnoreTF"].tap()
+        app.textFields["textIgnoreTF"].typeText("xl")
+        XCTAssertEqual(resultTest.label, "dexdnimoF oocl 7/42")
+        app.buttons["Default"].tap()
+        XCTAssertEqual(resultTest.label, "dednimxoF looc 24/7")
+        app.buttons["Custom"].tap()
+        XCTAssertEqual(resultTest.label, "dexdnimoF oocl 7/42")
     }
 }

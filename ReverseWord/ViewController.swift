@@ -20,14 +20,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var reverseButtonOutlet: UIButton!
     @IBOutlet weak var textIgnoreTF: UITextField!
     @IBOutlet weak var segmentControllerOutlet: UISegmentedControl!
+    @IBOutlet weak var AllCharactersExceptionLabel: UILabel!
     let bottomLine = CALayer()
-    
+   
     
     override func viewDidLoad() {
         super .viewDidLoad()
+        
         inputTF.delegate = self
+        textIgnoreTF.delegate = self
         inputTF.accessibilityIdentifier = "inputTF"
         resultLabel.accessibilityIdentifier = "resultLabel"
+        textIgnoreTF.accessibilityIdentifier = "textIgnoreTF"
         // Do any additional setup after loading the view.
         
         //bottom line text field options
@@ -101,7 +105,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             resultLabel.text = "\(resultString)"
         }
-        inputTF.endEditing(false)
+        //inputTF.endEditing(false) // if button not Hidden
     }
     
     func clearFields() {
@@ -112,6 +116,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func editingBegan(_ sender: UITextField) {
         reverseButtonOutlet.alpha = 1
         bottomLine.backgroundColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
+       
     }
     
     @IBAction func editingEnded(_ sender: UITextField) {
@@ -119,25 +124,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func segmentControllerChanged(_ sender:  UISegmentedControl) {
-        let textIgnore = ""
+        
         switch sender.selectedSegmentIndex {
         case 0:
-            textIgnoreTF.text = "All characters except alhabetic symbols"
+            textIgnoreTF.isHidden = true
+            AllCharactersExceptionLabel.isHidden = false
             textIgnoreTF.borderStyle = .none
             textIgnoreTF.textAlignment = .center
-            
+            reversWords()
         case 1:
-            textIgnoreTF.text = textIgnore
+            textIgnoreTF.isHidden = false
+            AllCharactersExceptionLabel.isHidden = true
             textIgnoreTF.borderStyle = .roundedRect
             textIgnoreTF.textAlignment = .left
-            
+            reversWords()
         default:
             break
         }
     }
     
+    @IBAction func checkTF(_ sender: UITextField) {
+        reversWords()
+    }
     
+    @IBAction func checkExceptionalTF(_ sender: UITextField) {
+        reversWords()
+    }
     
+    //Hidden
     @IBAction func reverseButtonTap(_ sender: UIButton) {
         if  inputTF.text == "" || inputTF.text == nil   {
             
@@ -146,7 +160,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             clearFields()
         }else{
             reversWords()
-            
         }
         
         if inputTF.text == "" {
