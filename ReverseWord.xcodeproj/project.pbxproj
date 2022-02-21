@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB16BD4B27C3BD3700338AB5 /* PreviewFirst.png in Resources */ = {isa = PBXBuildFile; fileRef = FB16BD4927C3BD3700338AB5 /* PreviewFirst.png */; };
+		FB16BD4C27C3BD3700338AB5 /* PreviewSecond.png in Resources */ = {isa = PBXBuildFile; fileRef = FB16BD4A27C3BD3700338AB5 /* PreviewSecond.png */; };
 		FB4D7DBA274691A700E0C4FE /* ReverseWordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D7DB9274691A700E0C4FE /* ReverseWordUITests.swift */; };
 		FB4D7DC827469D5C00E0C4FE /* ReverseWordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D7DC727469D5C00E0C4FE /* ReverseWordTests.swift */; };
 		FB77F2E7273D203C00CE5707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB77F2E6273D203C00CE5707 /* AppDelegate.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB16BD4927C3BD3700338AB5 /* PreviewFirst.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PreviewFirst.png; sourceTree = SOURCE_ROOT; };
+		FB16BD4A27C3BD3700338AB5 /* PreviewSecond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PreviewSecond.png; sourceTree = SOURCE_ROOT; };
 		FB4D7DB7274691A700E0C4FE /* ReverseWordUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReverseWordUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4D7DB9274691A700E0C4FE /* ReverseWordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseWordUITests.swift; sourceTree = "<group>"; };
 		FB4D7DBB274691A700E0C4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 				FB77F2EF273D203D00CE5707 /* Assets.xcassets */,
 				FB77F2F1273D203D00CE5707 /* LaunchScreen.storyboard */,
 				FB77F2F4273D203D00CE5707 /* Info.plist */,
+				FB16BD4927C3BD3700338AB5 /* PreviewFirst.png */,
+				FB16BD4A27C3BD3700338AB5 /* PreviewSecond.png */,
 			);
 			path = ReverseWord;
 			sourceTree = "<group>";
@@ -245,7 +251,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB16BD4C27C3BD3700338AB5 /* PreviewSecond.png in Resources */,
 				FB77F2F3273D203D00CE5707 /* LaunchScreen.storyboard in Resources */,
+				FB16BD4B27C3BD3700338AB5 /* PreviewFirst.png in Resources */,
 				FB77F2F0273D203D00CE5707 /* Assets.xcassets in Resources */,
 				FB77F2EE273D203C00CE5707 /* Main.storyboard in Resources */,
 			);

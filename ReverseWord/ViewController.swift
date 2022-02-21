@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var topBackground: UILabel!
@@ -23,16 +21,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var AllCharactersExceptionLabel: UILabel!
     let bottomLine = CALayer()
     
-    
     override func viewDidLoad() {
         super .viewDidLoad()
-        
         inputTF.delegate = self
         textIgnoreTF.delegate = self
         inputTF.accessibilityIdentifier = "inputTF"
         resultLabel.accessibilityIdentifier = "resultLabel"
         textIgnoreTF.accessibilityIdentifier = "textIgnoreTF"
-        // Do any additional setup after loading the view.
         
         //bottom line text field options
         bottomLine.frame = CGRect(x: 0.0, y: inputTF.frame.height - 1, width: inputTF.frame.width, height: 1.0)
@@ -49,12 +44,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let paragraphStyle = NSMutableParagraphStyle()
         reverseButtonOutlet.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 17)
         paragraphStyle.lineHeightMultiple = 1.08
-        
         buttonConstraints()
-        
-        
-        
-        
     }
     
     func buttonConstraints () {
@@ -82,9 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             selectedSegmentCustom()
         }
     }
-    
     //inputTF.endEditing(false) // if button not Hidden
-    
     
     func selectedSegmentDefault() {
         if let string: String = inputTF.text {
